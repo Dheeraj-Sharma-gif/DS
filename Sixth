@@ -1,0 +1,297 @@
+import java.util.Scanner;
+
+class Account {
+
+ String customerName;
+
+ long accountNumber;
+
+ String accountType;
+
+ double balance=5000.0;
+
+ void customerDetails() {
+
+ Scanner sc = new Scanner(System.in);
+
+ System.out.print("Enter Customer Name: ");
+
+ customerName = sc.nextLine();
+
+ System.out.print("Enter Account Number: ");
+
+ accountNumber = sc.nextLong();
+
+ }
+
+ void deposit(double amount) {
+
+ balance += amount;
+
+ System.out.println("Deposition of Rs: " + amount + " is successful ");
+
+ }
+
+ void displayDetails() {
+
+ System.out.println("Customer Name: " + this.customerName);
+
+ System.out.println("Account Number: " + this.accountNumber);
+
+ }
+
+ void displayBalance() {
+
+ System.out.println("Your Account Balance Is Rs: " + this.balance);
+
+ }
+
+}
+
+class CurrAcct extends Account {
+double minBalance = 5000;
+
+ double serviceCharge = 100;
+
+ CurrAcct(String accountType) {
+
+ this.accountType = accountType;
+
+ }
+
+ void withdraw(double amount) {
+
+ if (amount <= (this.balance - minBalance)) {
+
+ this.balance -= amount;
+
+ System.out.println("Withdrawal of rupees " + amount + " is successful.");
+
+ }
+
+ else {
+
+ System.out.println("Insufficient balance. Withdrawal unsuccessful.");
+
+ System.out.println("Service charge of Rs " + serviceCharge + " has imposed. So your Updated 
+
+Balance is Rs " + this.balance);
+
+ }
+
+ }
+
+}
+
+class SavAcct extends Account {
+
+ double interestRate = 0.03;
+
+ double interest=0.0;
+
+ SavAcct(String accountType) {
+
+ this.accountType = accountType;
+
+ }
+
+ void compute_interest(double amt) {
+
+ interest += (amt * interestRate);
+
+ balance += interest;
+
+ }
+
+ void interest() {
+
+ System.out.println("Interest of Rs " + interest + " developed.");
+
+ }
+
+ void withdraw(double amount) {
+
+ if (amount <= balance) {
+
+ balance -= amount;
+
+ System.out.println("Withdrawal of rupees " + amount + " is successful.");
+
+ } else {
+
+ System.out.println("Insufficient balance. Withdrawal unsuccessful.");
+
+ }
+
+ }
+
+}
+
+class Mainm {
+
+ public static void main(String[] args) {
+int opt1, opt2, choice;
+
+ Scanner sc = new Scanner(System.in);
+
+ CurrAcct currentAccount = new CurrAcct("Current");
+
+ SavAcct savingsAccount = new SavAcct("Savings");
+
+ do {
+
+ System.out.println("Enter 1: to Open Current Account\nEnter 2: to Open Saving 
+
+Account\nEnter 3: to Terminate");
+
+ choice = sc.nextInt();
+
+ switch (choice) {
+
+ case 1:
+
+ do {
+
+ System.out.println("\nEnter 1: to Enter Customer Details\nEnter 2: to Deposit 
+
+Money\nEnter 3: to Display Balance\nEnter 4: to Withdraw\nEnter 5: to Display Customer 
+
+details\nEnter 6: to Go back to menu");
+
+ opt1 = sc.nextInt();
+
+ switch (opt1) {
+
+ case 1:
+
+ currentAccount.customerDetails();
+
+ break;
+
+ case 2:
+
+ double B;
+
+ do {
+
+ System.out.println("Enter the Amount to Deposit to the Current Account: ");
+
+ B = sc.nextDouble();
+
+ }while(B<0);
+
+ currentAccount.deposit(B);
+
+ break;
+
+ case 3:
+
+ currentAccount.displayBalance();
+
+ break;
+
+ case 4:
+
+ System.out.println("Enter the Amount to withdraw: ");
+
+ double E = sc.nextDouble();
+
+ currentAccount.withdraw(E);
+
+ break;
+
+ case 5:
+
+ currentAccount.displayDetails();
+
+ break;
+
+ }
+
+ } while (opt1 != 6);
+
+ break;
+
+ case 2:
+
+ do {
+
+ System.out.println("\nEnter 1: to Enter Customer Details\nEnter 2: to Deposit 
+
+Money\nEnter 3: to Check Interest developed\nEnter 4: to Display Balance\nEnter 5: to Withdraw 
+
+Money\nEnter 6: to Display Customer details\nEnter 7: to Go back to menu");
+
+ opt2 = sc.nextInt();
+
+ switch (opt2) {
+
+ case 1:
+
+ savingsAccount.customerDetails();
+
+ break;
+
+ case 2:
+
+ double C;
+
+ do {
+
+ System.out.println("Enter the Amount to Deposit to the Saving Account: ");
+
+ C = sc.nextDouble();
+
+ }while(C<0);
+
+ savingsAccount.deposit(C);
+
+ savingsAccount.compute_interest( C);
+
+ break;
+
+ case 3:
+
+ savingsAccount.interest();
+
+ break;
+
+ case 4:
+
+ savingsAccount.displayBalance();
+
+ break;
+
+ case 5:
+
+ System.out.println("Enter the Amount to withdraw: ");
+
+ double A = sc.nextDouble();
+
+ savingsAccount.withdraw(A);
+
+ break;
+
+ case 6:
+
+ savingsAccount.displayDetails();
+
+ break;
+
+ }
+
+ } while (opt2 != 7);
+
+ break;
+
+ case 3:
+
+ System.exit(0);
+
+ }
+
+ } while (choice != 3);
+
+ }
+
+}
