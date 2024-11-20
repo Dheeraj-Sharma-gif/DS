@@ -1,0 +1,65 @@
+import java.util.*;
+
+public class prime
+
+{
+
+ public static void main(String[] args) 
+
+ {
+
+ Scanner in = new Scanner(System.in);
+
+ System.out.println("Enter the value of N:");
+
+ int n = in.nextInt();
+
+ int sum = 0;
+
+ System.out.println(" Input "+ n + " Numbers:");
+
+ for (int i = 0; i < n; i++) 
+
+ {
+
+ sum += in.nextInt();
+
+ }
+
+ if (sum < 2)
+
+ System.out.println(sum + " is not a prime number.");
+
+ else 
+
+ {
+
+ boolean isPrime = true;
+
+ for (int i = 2; i <= sum / 2; i++) 
+
+ {
+
+ if (sum % i == 0) {
+
+ isPrime = false;
+
+ break;
+
+ }
+
+ }
+
+ if (isPrime)
+
+ System.out.println(sum + " is a prime number.");
+
+ else
+
+ System.out.println(sum + " is not a prime number.");
+
+ }
+
+ }
+
+}
