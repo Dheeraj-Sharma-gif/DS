@@ -1,0 +1,87 @@
+class MyTime {
+
+ private int hour;
+
+ private int minute;
+
+ MyTime(int hour, int minute) {
+
+ setTime(hour, minute);
+
+ }
+
+ public void setTime(int hour, int minute) {
+
+ if (hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59) {
+
+ this.hour = hour;
+
+ this.minute = minute;
+
+ } else {
+
+ System.out.println("Invalid time. Hour should be between 0 and 23, and minute between 0 and 59.");
+
+ }
+
+ }
+
+ public int getHour() {
+
+ return hour;
+
+ }
+
+ public int getMinute() {
+
+ return minute;
+
+ }
+
+ public MyTime nextMinute() {
+
+ minute++;
+
+ if (minute >= 60) {
+
+ minute = 0;
+
+ hour = (hour + 1) % 24;
+
+ }
+
+ return this;
+
+ }
+
+ public MyTime nextHour() {
+
+ hour = (hour + 1) % 24;
+
+ return this;
+
+ }
+
+}
+
+class TestMyTime {
+Page 12 of 46
+
+ public static void main(String[] args) {
+
+ MyTime t = new MyTime(23, 59);
+
+ System.out.println("Current Time: " + t.getHour() + ":" + t.getMinute());
+
+ t.nextMinute();
+
+ System.out.println("Next Minute: " + t.getHour() + ":" + t.getMinute());
+
+ t.nextHour();
+
+ System.out.println("Next Hour: " + t.getHour() + ":" + t.getMinute());
+
+ }
+
+}
+
