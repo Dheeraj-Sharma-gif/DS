@@ -1,0 +1,73 @@
+public class Complex {
+
+ private float real;
+
+ private float imaginary;
+
+ 
+
+ public Complex(float real, float imaginary) {
+
+ this.real = real;
+
+ this.imaginary = imaginary;
+
+ }
+
+ 
+
+ public Complex add(Complex obj) {
+
+ float sumReal = this.real + obj.real;
+
+ float sumImaginary = this.imaginary + obj.imaginary;
+
+ return new Complex(sumReal, sumImaginary);
+
+ }
+
+ public Complex subtract(Complex obj) {
+
+ float diffReal = this.real - obj.real;
+
+ float diffImaginary = this.imaginary - obj.imaginary;
+
+ return new Complex(diffReal, diffImaginary);
+
+ }
+
+ 
+
+ public void display() {
+
+ System.out.printf("%.1f%s%.1fi%n", real, (imaginary >= 0 ? "+" : ""), imaginary);
+
+ }
+
+ 
+
+ public static void main(String[] args) {
+
+ Complex C1 = new Complex(-5, -4);
+
+ Complex C2 = new Complex(-6, -6);
+
+ 
+
+ Complex resultAddition = C1.add(C2);
+
+ System.out.print("Sum of two complex numbers = ");
+
+ resultAddition.display();
+
+ 
+
+ Complex resultSubtraction = C1.subtract(C2);
+
+ System.out.print("Difference of two complex numbers = ");
+
+ resultSubtraction.display();
+
+ }
+
+}
