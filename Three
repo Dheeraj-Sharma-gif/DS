@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class SubString {
+
+ public static void main(String[] args) {
+
+ Scanner scanner = new Scanner(System.in);
+
+ String inputString = "";
+
+ System.out.print("Enter the input string: ");
+
+ inputString = scanner.nextLine();
+
+ System.out.print("Enter the starting index (i): ");
+
+ int startIndex = scanner.nextInt();
+
+ System.out.print("Enter the ending index (j): ");
+
+ int endIndex = scanner.nextInt();
+
+ if (startIndex < 0 || endIndex >= inputString.length() || startIndex > endIndex) {
+
+ System.out.println("Invalid index positions.");
+
+ System.exit(0);
+
+ }
+
+ String extractedSubstring = "";
+
+ for (int index = startIndex; index <= endIndex; index++) {
+
+ extractedSubstring += inputString.charAt(index);
+
+ }
+
+ System.out.println("Extracted Substring: " + extractedSubstring);
+
+ }
+
+}
+
